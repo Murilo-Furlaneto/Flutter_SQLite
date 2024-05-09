@@ -12,6 +12,8 @@ class TarefasList extends StatefulWidget {
 }
 
 class _TarefasListState extends State<TarefasList> {
+  
+
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<TarefasController>(context);
@@ -32,14 +34,16 @@ class _TarefasListState extends State<TarefasList> {
             return const Center(child: Text('Erro ao carregar os dados'));
           } else {
             List<TarefasModels> tarefas = snapshot.data!;
-            return ListView.builder(
+            return ListView.separated(
+              separatorBuilder: (BuildContext context, int index) =>
+                  const Divider(),
               itemCount: tarefas.length,
               itemBuilder: (BuildContext context, int index) {
                 // Constrói um widget para exibir cada tarefa.
                 return ListTile(
                   title: Text(tarefas[index].description),
                   trailing: SizedBox(
-                    width: 50,
+                    width: 110,
                     child: Row(
                       children: [
                         IconButton(
@@ -49,7 +53,18 @@ class _TarefasListState extends State<TarefasList> {
                             icon: const Icon(
                               Icons.delete,
                               color: Colors.red,
-                            ))
+                            )),
+                        Switch(
+                            value: tarefas[index].isConcluided,
+                            activeColor: Colors.blue,
+                            onChanged: (bool value) {
+                              setState(() {
+                                // Atualize o valor localmente na lista de tarefas exibida
+                                tarefas[index].isConcluided = value;
+                              });
+                              // Atualize os dados da tarefa no provedor de estado
+                              provider.atualizarTarefa(tarefas[index]);
+                            })
                       ],
                     ),
                   ),
@@ -66,6 +81,7 @@ class _TarefasListState extends State<TarefasList> {
             Navigator.push(context,
                 MaterialPageRoute(builder: (context) => const TarefasForm()));
           }),
+      
     );
   }
 }

@@ -50,7 +50,7 @@ class _TarefasFormState extends State<TarefasForm> {
                   } else {
                     var novaTarefa = TarefasModels(
                       id: Random().nextInt(10000),
-                      description: _descriptionController.text,
+                      description: _descriptionController.text, isConcluided: false,
                     );
 
                     final provider = Provider.of<TarefasController>(

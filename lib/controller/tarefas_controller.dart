@@ -19,4 +19,14 @@ class TarefasController extends ChangeNotifier {
     await _database.removerTarefa(tarefa);
     notifyListeners();
   }
+
+  Future<void> atualizarTarefa(TarefasModels tarefa) async {
+    await _database.atualizarTarefa(tarefa);
+    notifyListeners();
+  }
+
+  Future<List<TarefasModels>> tarefasConcluidas() async {
+    await _database.database;
+    return _database.tarefasConcluidas();
+  }
 }

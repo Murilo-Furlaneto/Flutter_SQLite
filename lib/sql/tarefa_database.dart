@@ -13,7 +13,7 @@ class TarefaDatabase {
   Future<Database> _initDatabase() async {
     return await openDatabase(
       join(await getDatabasesPath(), 'tarefa.db'),
-      version: 2,
+      version: 3,
       onCreate: _onCreate,
       onUpgrade: _onUpgrade,
     );
@@ -26,8 +26,9 @@ class TarefaDatabase {
   }
 
   Future<void> _onUpgrade(Database db, int oldVersion, int newVersion) async {
-    if (oldVersion < 2) {
-await db.execute('ALTER TABLE tarefa ADD COLUMN description TEXT');
+    if (oldVersion < 3) {
+      await db.execute(
+          'ALTER TABLE tarefa ADD COLUMN isConcluided INTEGER NOT NULL DEFAULT 0');
     }
   }
 
@@ -44,7 +45,28 @@ await db.execute('ALTER TABLE tarefa ADD COLUMN description TEXT');
 
   Future<List<TarefasModels>> listarTarefas() async {
     final Database db = await database;
-    final List<Map<String, dynamic>> maps = await db.query('tarefa');
+    final List<Map<String, dynamic>> maps =
+        await db.query('tarefa', where: "isConcluided == 0");
+
+    return List.generate(
+        maps.length, (index) => TarefasModels.fromMap(maps[index]));
+  }
+
+  Future<void> atualizarTarefa(TarefasModels tarefa) async {
+    final db = await database;
+    await db.update(
+      'tarefa',
+      tarefa.toMap(),
+      where: 'id = ?',
+      whereArgs: [tarefa.id],
+    );
+  }
+
+  Future<List<TarefasModels>> tarefasConcluidas() async {
+    final db = await database;
+
+    final List<Map<String, dynamic>> maps =
+        await db.query('tarefa', where: "isConcluided == 1");
 
     return List.generate(
         maps.length, (index) => TarefasModels.fromMap(maps[index]));

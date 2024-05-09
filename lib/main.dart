@@ -1,4 +1,5 @@
 import 'package:estudo_sql/controller/tarefas_controller.dart';
+import 'package:estudo_sql/views/home_view.dart';
 import 'package:estudo_sql/views/tarefas_list.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
           useMaterial3: true,
         ),
-        home: const TarefasList(),
+        home: HomeView(),
       ),
     );
   }
