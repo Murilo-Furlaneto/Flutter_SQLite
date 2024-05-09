@@ -1,16 +1,9 @@
-# estudo_sql
 
-A new Flutter project.
+Projeto criado para estudar o armazenamento local utilizando o SQLite em uma TodoList.
 
-## Getting Started
+Nesse projeeto, o usuário poderia criar uma tarefa, excluir e também tem a possibilidade de ver as tarefas concluídas.
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+https://github.com/Murilo-Furlaneto/Flutter_SQLite/assets/64844221/1f1747c2-0463-47a2-b0c5-b59df2f9fb5d
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
