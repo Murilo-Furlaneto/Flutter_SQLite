@@ -1,7 +1,7 @@
 
 Projeto criado para estudar o armazenamento local utilizando o SQLite em uma TodoList.
 
-Nesse projeeto, o usuário poderia criar uma tarefa, excluir e também tem a possibilidade de ver as tarefas concluídas.
+Nesse projeto, o usuário poderia criar uma tarefa, excluir e também tem a possibilidade de ver as tarefas concluídas.
 
 
 
